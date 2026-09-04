@@ -2,6 +2,8 @@
 
 Analyze the selected set as a coherent visual language. The primary reference controls the overall grammar; secondary references may affect only their assigned traits.
 
+Read [reference decomposition](reference-decomposition.md) first and honor the approved Reference Contract, including rejected traits.
+
 ## Evidence labels
 
 Mark consequential conclusions as:
@@ -59,3 +61,5 @@ Before drafting the standard, test the proposed parts together:
 - Is the result distinguishable without relying on one decorative effect?
 - Are secondary references causing visible style collage?
 - What breaks first on the smallest target surface?
+- Can each conclusion be traced to the product, primary reference, permitted secondary contribution, or an explicit proposal?
+- Do the resulting principles support a concise, testable Visual DNA?

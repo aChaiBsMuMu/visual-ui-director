@@ -2,6 +2,8 @@
 
 Use a shared creative thesis across targets, then load only the relevant platform references.
 
+Apply four layers in order: Brand Layer, Product Visual Layer, Platform Adaptation Layer, and Device Context Layer.
+
 ## Detect targets
 
 Infer targets from the brief and repository when reliable:
@@ -36,3 +38,5 @@ Adapt these by platform:
 ## Multiple targets
 
 Define one priority surface and at least one compact and expanded condition. Put platform differences in named overrides rather than weakening the master rules into vague averages.
+
+The goal is the same Visual DNA and brand language with native behavior—not pixel-level consistency.

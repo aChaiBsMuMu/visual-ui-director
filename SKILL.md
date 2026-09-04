@@ -1,129 +1,136 @@
 ---
 name: visual-ui-director
-description: Create visually distinctive, reference-led UI for web, mobile, watch, and desktop products. Use when a user wants to explore visual references, turn selected references into an actionable UI visual standard, or implement and visually validate an interface across Web, iOS/iPadOS/watchOS, Android, or Windows. Do not use for pure backend work or a narrow accessibility-only audit.
+description: Direct visually distinctive, reference-led UI for Web, iOS/iPadOS/watchOS, Android/Wear OS, and Windows. Use to explore visual directions, decompose chosen references into a Visual DNA and design system, implement interfaces, critique rendered screenshots, detect generic UI or visual drift, and iterate to an approved quality threshold. Do not use for product strategy, UX research, pure backend work, or a narrow accessibility-only audit.
 ---
 
 # Visual UI Director
 
-Make the user's taste the source of truth. Lead a UI project through reference selection, visual-standard approval, implementation, and rendered visual QA without treating an industry template or style label as the design answer.
+## Mission
+
+Make the user's taste the source of truth, then exercise visual judgment. Convert product intent and selected references into an explicit Visual DNA, a platform-adaptive design system, and production UI. Judge the rendered result against that system and iterate weak outcomes instead of treating code completion as delivery.
 
 ## Core invariants
 
-- The user owns the aesthetic decision. Recommendations help them choose; they do not silently choose for them.
-- Keep one primary reference. Use at most two secondary references, each assigned to explicit traits. Do not blend images indiscriminately.
-- Do not reproduce a third-party work pixel-for-pixel or reuse its protected assets. Extract principles, not identity.
-- Label uncertain inferences. A static image cannot prove its original font, exact token values, responsive behavior, or motion.
-- In Guided and Reference-led modes, stop at each approval gate unless the user explicitly asked to skip it.
-- A visual standard must include rendered evidence such as a style tile, wireframe, or representative UI region; prose alone is insufficient.
-- After implementation, inspect rendered screenshots at relevant sizes and fix the highest-impact visual mismatch before delivery.
-- Platform conventions constrain the shared visual language. Never force one platform's navigation, density, hit targets, or input model onto another.
+- The user makes the final aesthetic decision. The director recommends, explains, and challenges; it does not silently lock taste.
+- Keep one primary reference and at most two secondary references. Give each secondary reference one explicit contribution.
+- Extract principles rather than copying layouts, identity, or protected assets. Keep source attribution and a `Do Not Copy` list.
+- Mark consequential analysis as **Observed**, **Inferred**, or **Proposed**.
+- Guided and Reference-led modes stop at Gates A and B. Only explicit Direct mode may treat them as assumed.
+- An approved direction requires visual evidence: a style tile and representative screen, plus low-fidelity composition for priority form factors.
+- The first implementation is never the final implementation. Render, critique, score, fix, and render again when required.
+- Do not claim production-ready visual implementation until Gate C passes.
+- Preserve one brand language across platforms while adapting navigation, density, input, safe areas, and native behaviors.
 
-## Select an operating mode
+## Operating modes
 
-- **Guided** (default): discover references, obtain reference approval, build a visual standard, obtain standard approval, then implement.
-- **Reference-led**: the user already supplied one or more references; begin with reference analysis, then obtain standard approval before implementation.
-- **Direct**: only when the user explicitly asks to skip exploration or move fast. Record assumptions, create a lightweight visual standard, and proceed without the two pauses.
+- **Guided** (default): frame the product, form three visual hypotheses, search references, pass Gate A, derive the system, pass Gate B, implement, and pass Gate C.
+- **Reference-led**: the user supplies references. Record what to keep and reject, then begin decomposition before Gate B.
+- **Direct**: only when the user explicitly asks to skip exploration or move immediately. Record assumptions and still create Visual DNA, render, critique, score, and enforce Gate C.
 
-For work that persists artifacts in a project, initialize the decision workspace:
+For persistent work, initialize the decision workspace:
 
 ```bash
 python3 "<skill-dir>/scripts/design_workspace.py" init --root "<project-root>" --project "<project-name>" --platform web --mode guided
 ```
 
-Use `status` before resuming a later session. The helper records decisions; it never decides on the user's behalf.
+Use `status` before resuming. The helper records and validates decisions; it never chooses the aesthetic direction for the user.
 
-## Stage 0: frame the problem
+## Stage 0 — Product and visual framing
 
-Identify what materially affects visual direction:
+Identify product, industry, audience, core task, context, content density, desired and rejected traits, brand assets, localization, accessibility target, technical stack, delivery scope, target platforms, and priority device. Infer repository facts when reliable; ask only for omissions that materially change visual direction.
 
-- product, industry, audience, core task, context of use, and content density
-- target surfaces and priority device; one visual language may have multiple platform adaptations
-- existing brand assets, constraints, real content, localization, accessibility target, and repository stack
-- desired traits, rejected traits, competitors to approach or avoid, and delivery scope
+Read [platform routing](references/platform-routing.md), [responsive composition](references/responsive-composition.md), and only the relevant platform files.
 
-Detect the implementation environment from the repository when possible. Technology affects implementation, not the aesthetic thesis. Ask only for missing information that would materially change the result.
+## Stage 1 — Visual hypotheses
 
-Read [references/platform-routing.md](references/platform-routing.md), then load only the relevant platform files.
+Create three meaningfully different directions. Each needs a visual thesis, product fit, reference types, strength, risk, memorable gesture, generic-design risk, and reusable English, Chinese, platform, industry, visual-style, editorial, and interaction search terms. Do not create three palette variants of one layout.
 
-## Stage 1: discover references and obtain approval
+## Stage 2 — Reference discovery
 
-Read [references/reference-discovery.md](references/reference-discovery.md).
+Read [reference discovery](references/reference-discovery.md). Search suitable public sources such as Behance, Pinterest, Huaban, Dribbble, Awwwards, Mobbin, or official galleries. Present visible references and direct source links when available. Do not invent inaccessible results or download references as production assets.
 
-1. Form three meaningfully different visual hypotheses from the brief.
-2. Build Chinese and English search terms for each hypothesis.
-3. Search suitable public design sources. Prefer a real source page and record its URL; use image search for broad discovery and a browser for visible site context when available.
-4. Filter out duplicates, low-resolution images, isolated decorative shots, structurally impossible concepts, and references that cannot support the user's content.
-5. Present a reference board with normally 3–5 images per direction and 9–12 images total. For a narrow request, use fewer.
-6. Explain the composition, palette, type character, density, imagery, motion potential, strengths, and risks of each direction.
+### Gate A — Reference lock
 
-If a source is unavailable, do not invent results. Provide the exact search terms and ask the user to upload or select references. Never download a reference image as a production asset.
+Stop for the user to select, reject, remix by named trait, request another search, or upload references. Record:
 
-### Gate A — Reference Decision
-
-Stop and let the user select, reject, remix by named trait, request another search, or upload their own reference. Record:
-
-- primary reference
-- optional secondary references and the single trait each contributes
+- primary reference and contribution
+- no more than two secondary references and their contributions
 - selected and rejected traits
-- non-negotiables and known platform targets
+- `Do Not Copy`, non-negotiables, and platform targets
 
-When artifacts are being persisted, record the explicit selection with `design_workspace.py select`. Do not enter Stage 2 in Guided mode until the user has made this decision.
+Generate `REFERENCE_CONTRACT.md` and record the choice with `design_workspace.py select`. Rejected traits may not re-enter later work unless the user explicitly revises the contract.
 
-## Stage 2: derive and validate the visual standard
+## Stage 3 — Reference decomposition
 
-Read [references/reference-analysis.md](references/reference-analysis.md) and [references/visual-standard.md](references/visual-standard.md).
+Read [reference decomposition](references/reference-decomposition.md) and [reference analysis](references/reference-analysis.md). Classify product, visual, layout, interaction, typography, imagery, brand/editorial, and motion contributions. For every reference, state `Reference`, `Contribution`, `Do Not Copy`, `Observed`, `Inferred`, and `Proposed`.
 
-Analyze the chosen reference set as one system:
+## Stage 4 — Visual DNA
 
-- creative thesis, emotional intent, brand character, and memorable gesture
-- hierarchy, reading path, grid, composition, whitespace, density curve, and responsive transformation
-- semantic palette and contrast, typography, icon grammar, spacing, radii, borders, elevation, material, imagery, and motion
-- components, states, content behavior, and platform-specific adaptations
+Read [Visual DNA](references/visual-dna.md). Generate `VISUAL_DNA.md` containing 5–8 concise, observable, testable principles above the token level. Include at least one memorable visual gesture for every key screen. Do not use unsupported adjectives such as “clean”, “premium”, or “modern”.
 
-Separate three kinds of statements:
+## Stage 5 — Visual system
 
-- **Observed**: visible in the reference.
-- **Inferred**: likely but not provable from the available artifact.
-- **Proposed**: a new decision required for this product.
+Read [visual standard](references/visual-standard.md) and its routed modules:
 
-Create a versioned standard containing:
+- [color discipline](references/color-discipline.md)
+- [typography character](references/typography-character.md)
+- [spacing rhythm](references/spacing-rhythm.md)
+- [imagery direction](references/imagery-direction.md)
+- [motion direction](references/motion-direction.md)
 
-- `MASTER.md` with the creative thesis and rules
-- machine-readable semantic tokens
-- a low-fidelity layout for each priority form factor
-- a rendered style tile
-- one representative mid-fidelity application when visual risk is high
-- source attribution and a decision log
+Create a versioned `DESIGN_SYSTEM` with `MASTER.md`, `VISUAL_DNA.md`, machine-readable tokens, focused color/type/spacing/icon/imagery/motion/component/responsive documents, and platform/page overrides. Keep the master concise: creative thesis, identity, principles, and system relationships.
 
-Use deterministic HTML/SVG/Figma or the project's UI stack for wireframes and style tiles when structural accuracy matters. Use image generation for imagery or expressive exploration, not for precise UI specifications.
+## Stage 6 — Style tile and representative screen
 
-### Gate B — Standard Approval
+Render the palette, typography, controls, states, imagery, icon language, geometry, material, and motion cues together. Also render the highest-risk representative screen and low-fidelity compositions for priority form factors. Use deterministic UI tools for layout evidence and image generation only for expressive assets or exploration.
 
-Show the visual artifacts and summarize open risks. Stop for approval or revision. Once approved, record the version with `design_workspace.py approve`. The approved standard becomes the source of truth; later deviations require an explicit page override or a revised standard.
+### Gate B — Visual approval
 
-## Stage 3: implement the approved direction
+Show the Visual DNA, system, style tile, and representative screen. Summarize open risks and platform differences. Stop for approval or targeted revision, then record the approved version with `design_workspace.py approve --gate b`. The approved system becomes the source of truth.
 
-Read [references/implementation-and-qa.md](references/implementation-and-qa.md) and the relevant platform file(s).
+## Stage 7 — Implementation
 
-1. Check the decision workspace. In Guided or Reference-led mode, do not implement if Gate B is unconfirmed.
-2. Read the approved standard, page overrides, real content, and existing code conventions.
-3. Implement responsive structure, components, states, and meaningful motion in the detected stack.
-4. Preserve platform-native behavior while mapping shared brand tokens appropriately.
-5. Render the interface on the target sizes; include compact and expanded conditions where relevant.
-6. Compare screenshots to the approved thesis, style tile, and composition rules.
-7. Fix the highest-impact problems: weak focal point, generic template patterns, rhythm, inconsistent imagery/type/icons, broken responsive composition, or missing interaction states.
-8. Run accessibility, interaction, performance, and stack-specific checks in proportion to scope.
+Read [implementation and QA](references/implementation-and-qa.md) and relevant platform guidance. Confirm Gate B unless Direct mode applies. Implement real content, semantic tokens, responsive composition, required states, platform-native behavior, meaningful motion, and documented page overrides.
+
+## Stage 8 — Screenshot critic
+
+Read [screenshot critic](references/screenshot-critic.md) and [anti-generic UI](references/anti-generic-ui.md). Render target screens and compare them with the Reference Contract, Visual DNA, approved system, representative screen, and platform layer. Report strengths, problems, top three fixes, generic risk, platform fit, and whether a re-render is required.
+
+## Stage 9 — Visual score
+
+Read [visual quality rubric](references/visual-quality-rubric.md). Score all ten dimensions from 1–5 and convert the total to 100. Persist scores with `design_workspace.py score`.
+
+- `<80`: must iterate.
+- `80–89`: fix at least the top three problems and re-render.
+- `>=90`: eligible for Gate C when all other evidence exists.
+- Key screens target `>=85`; hero, home, and core-decision screens target `>=88`.
+
+## Stage 10 — Iteration
+
+Repeat `implement → render → critique → score → top-three fixes → re-render → re-score`. Also read [visual drift](references/visual-drift.md) when a project has many screens, multiple contributors, or repeated iterations. Use `design_workspace.py audit` and record intentional exceptions with `override` rather than weakening the whole system.
+
+### Gate C — Delivery quality
+
+Pass Gate C only when the Visual Standard and Visual DNA are approved, target screens were rendered, screenshot critique is complete, score thresholds are met, critical inconsistencies are resolved, platform QA is recorded, and known deviations are documented. Record it with `design_workspace.py approve --gate c`.
 
 ## Platform routing
 
-- Web and responsive browser UI: [references/platforms/web.md](references/platforms/web.md)
-- iPhone and iPad: [references/platforms/apple-mobile.md](references/platforms/apple-mobile.md)
-- Apple Watch: [references/platforms/watchos.md](references/platforms/watchos.md)
-- Android phones, tablets, foldables, and Wear OS: [references/platforms/android.md](references/platforms/android.md)
-- Windows desktop: [references/platforms/windows.md](references/platforms/windows.md)
+- Web: [web](references/platforms/web.md)
+- iPhone and iPad: [Apple mobile](references/platforms/apple-mobile.md)
+- Apple Watch: [watchOS](references/platforms/watchos.md)
+- Android and Wear OS: [Android](references/platforms/android.md)
+- Windows: [Windows](references/platforms/windows.md)
 
-When a product spans platforms, keep shared brand primitives in the master standard and put navigation, typography mapping, spacing/density, hit targets, window/safe-area behavior, and platform components in named overrides.
+Apply `Brand Layer → Product Visual Layer → Platform Adaptation Layer → Device Context Layer`. Aim for the same brand and native behavior, not pixel-identical layouts.
 
-## Deliver with evidence
+## Decision workspace
 
-State the selected references, approved standard version, implemented surfaces, test sizes, visual changes made after screenshot review, and unresolved constraints. Do not claim a platform or interaction was tested unless it was actually rendered or exercised.
+The `.design-director/` workspace stores project state, references, decisions, Visual DNA, versioned standards, screenshots, critiques, scores, overrides, and history. Use `init`, `status`, `select`, `approve`, `score`, `audit`, `override`, and `history`; see `--help` for exact arguments. For 1.x projects, read [migration notes](MIGRATION.md).
+
+## Anti-generic rules
+
+Reject unexplained dashboard formulas, card-everything layouts, default AI gradients, repeated icon-title-paragraph grids, mechanical spacing, excessive pills, generic heroes, unjustified glassmorphism, component-library-demo pages, and key screens without a memorable visual gesture. Diagnose the content and hierarchy problem before decorating it.
+
+## Delivery requirements
+
+Report the selected references, approved standard and Visual DNA version, implemented surfaces, exact test sizes and states, screenshot critique, before/after scores, fixes made, platform QA, overrides, and unresolved constraints. Do not claim a screen, platform, interaction, or threshold was tested unless evidence exists.

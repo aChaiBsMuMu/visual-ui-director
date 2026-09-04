@@ -15,7 +15,26 @@ Status: Draft
 
 Thesis:
 
+Why it fits:
+
+Reference types:
+
 Search terms:
+- English:
+- Chinese:
+- Platform-specific:
+- Industry-specific:
+- Visual-style:
+- Editorial:
+- Interaction:
+
+Strength:
+
+Risk:
+
+Memorable gesture:
+
+Generic risk:
 
 | ID | Preview / source | Relevant traits | Risk |
 |---|---|---|---|
@@ -25,7 +44,26 @@ Search terms:
 
 Thesis:
 
+Why it fits:
+
+Reference types:
+
 Search terms:
+- English:
+- Chinese:
+- Platform-specific:
+- Industry-specific:
+- Visual-style:
+- Editorial:
+- Interaction:
+
+Strength:
+
+Risk:
+
+Memorable gesture:
+
+Generic risk:
 
 | ID | Preview / source | Relevant traits | Risk |
 |---|---|---|---|
@@ -35,7 +73,26 @@ Search terms:
 
 Thesis:
 
+Why it fits:
+
+Reference types:
+
 Search terms:
+- English:
+- Chinese:
+- Platform-specific:
+- Industry-specific:
+- Visual-style:
+- Editorial:
+- Interaction:
+
+Strength:
+
+Risk:
+
+Memorable gesture:
+
+Generic risk:
 
 | ID | Preview / source | Relevant traits | Risk |
 |---|---|---|---|
@@ -47,5 +104,7 @@ Search terms:
 - Secondary reference and assigned trait:
 - Selected traits:
 - Rejected traits:
+- Do Not Copy:
 - Non-negotiables:
+- Platform targets:
 - User confirmation:

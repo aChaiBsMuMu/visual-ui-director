@@ -1,29 +1,32 @@
-# {{PROJECT_NAME}} — UI Visual Standard
+# {{PROJECT_NAME}} — Visual System Master
 
 Version: v0.1
 Status: Draft
 
-## Scope and references
+## Scope, references, and approval
 
-## Creative thesis
+## Creative thesis and identity
+
+## Visual DNA relationship
+
+## System relationships
+
+- COLOR.md
+- TYPOGRAPHY.md
+- SPACING.md
+- ICONOGRAPHY.md
+- IMAGERY.md
+- MOTION.md
+- COMPONENTS.md
+- RESPONSIVE.md
+- PLATFORM_OVERRIDES/
+- PAGE_OVERRIDES/
 
 ## Preserve / avoid
 
-## Hierarchy and composition
+## Key-screen visual gestures
 
-## Color system
-
-## Typography
-
-## Spacing, geometry, and material
-
-## Icon and imagery direction
-
-## Motion language
-
-## Components and states
-
-## Platform adaptations
+## Platform adaptation thesis
 
 ## Accessibility and implementation risks
 

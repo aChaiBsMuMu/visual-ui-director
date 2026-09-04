@@ -3,6 +3,7 @@
 ## Before implementation
 
 - Confirm the approved standard version or explicit Direct-mode assumptions.
+- Confirm the Reference Contract and approved Visual DNA; rejected traits remain prohibited.
 - Inspect the repository, existing components, tokens, assets, fonts, and target platform configuration.
 - Identify real content lengths and required states. Do not invent a grid of generic cards just to match a reference.
 - Decide which assets are usable, must be generated, need user supply, or require licensing.
@@ -15,14 +16,15 @@
 - Implement loading, empty, error, disabled, focused, selected, destructive, and reduced-motion states in proportion to scope.
 - Treat mobile, watch, and compact windows as recompositions, not scaled-down desktop artboards.
 
-## Rendered review loop
+## Rendered critic loop
 
 1. Run the real interface.
 2. Capture screenshots at the target sizes and relevant themes/states.
 3. Compare against the creative thesis, reference decision, style tile, low-fidelity composition, and platform override.
-4. Rank issues by visual impact.
-5. Fix the highest-impact issue and any severe usability/accessibility defects.
-6. Capture again and verify the change did not break another target.
+4. Produce the structured Screenshot Critic report.
+5. Score all ten dimensions in the visual-quality rubric.
+6. Identify and fix the top three visual problems plus severe usability/accessibility defects.
+7. Capture again, re-score, and verify the change did not break another target.
 
 Review for:
 
@@ -34,6 +36,9 @@ Review for:
 - secondary references leaking into unassigned traits
 - breakpoint collapse, unsafe areas, clipping, overlap, or hidden controls
 - ambiguous states, missing feedback, focus, contrast, and motion problems
+- visual-drift signals and undocumented page overrides
+
+The first implementation is not deliverable without at least one rendered critique. Below 80, iterate. From 80–89, fix the top three and re-render. Gate C also requires platform QA, resolved critical issues, and documented deviations.
 
 ## Delivery evidence
 

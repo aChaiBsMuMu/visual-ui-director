@@ -1,8 +1,8 @@
 interface:
   display_name: "Visual UI Director"
-  short_description: "参考图驱动的跨平台 UI 视觉设计、规范与实现流程"
+  short_description: "参考驱动、视觉判断、评分迭代的跨平台 UI 设计导演"
   brand_color: "#5B5CE2"
-  default_prompt: "Use $visual-ui-director to discover references, define a visual standard, and build this interface."
+  default_prompt: "Use $visual-ui-director to explore references, extract Visual DNA, build and implement the visual system, then critique and iterate rendered UI through Gate C."
 
 policy:
   allow_implicit_invocation: true

@@ -12,6 +12,8 @@ Turn the brief into three directions that differ in underlying visual behavior, 
 - density and whitespace behavior
 - type, imagery, material, and motion tendencies
 - a reason it fits the product and one likely risk
+- reference types to seek and a memorable visual gesture to investigate
+- what could make the direction generic
 
 If the user's brief is already narrow, offer two directions plus a faithful interpretation instead of manufacturing variety.
 
@@ -25,7 +27,12 @@ Useful property vocabulary:
 - low-light, high-key, restrained, cinematic, archival, playful, dense, spacious, modular, immersive
 - mobile onboarding, watch complication, desktop command center, responsive commerce, tablet workspace
 
-For every direction, retain 2–4 search queries that the user can reuse.
+For every direction, retain reusable terms in all relevant groups:
+
+- English and Chinese
+- platform-specific and industry-specific
+- visual-style and editorial
+- interaction or motion
 
 ## Source routing
 
@@ -67,6 +74,8 @@ Normally present three directions with 3–5 candidates each and no more than 12
 For each direction, summarize palette tendency, type character, composition, density, imagery, motion potential, suitable platforms, and reusable search keywords.
 
 Ask the user to choose one primary reference and at most two secondary references. Require each secondary reference to contribute a named trait such as “palette only” or “navigation density only.”
+
+After selection, create a Reference Contract containing Primary Reference and Contribution, Secondary References and Contributions, Selected Traits, Rejected Traits, Do Not Copy, Non-negotiables, and Platform Targets. This contract persists through implementation and screenshot review.
 
 ## Copyright boundary
 

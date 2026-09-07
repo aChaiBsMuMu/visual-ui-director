@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "reference_contract_sha256": "",
+  "context": {
+    "product": "Margin bilingual essay reader",
+    "users": "Chinese office workers reading after work",
+    "task": "Choose and read one twelve-minute essay",
+    "content": "Chinese and English essay titles, synopsis, archive and reading progress",
+    "platforms": [
+      "web"
+    ],
+    "device": "Compact browser 390 × 844",
+    "smallest_target": "Compact browser 320 CSS pixels with text reflow"
+  },
+  "influence": [
+    {
+      "dimension": "01 Creative Thesis",
+      "source": "primary",
+      "contribution": "overall grammar",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-01"
+    },
+    {
+      "dimension": "02 Color",
+      "source": "proposed",
+      "contribution": "Product reading task and native web behavior",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-02"
+    },
+    {
+      "dimension": "03 Typography",
+      "source": "primary",
+      "contribution": "overall grammar",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-03"
+    },
+    {
+      "dimension": "04 Layout & Composition",
+      "source": "primary",
+      "contribution": "overall grammar",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-04"
+    },
+    {
+      "dimension": "05 Spacing & Geometry",
+      "source": "primary",
+      "contribution": "overall grammar",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-05"
+    },
+    {
+      "dimension": "06 Components",
+      "source": "proposed",
+      "contribution": "Product reading task and native web behavior",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-06"
+    },
+    {
+      "dimension": "07 Iconography",
+      "source": "proposed",
+      "contribution": "Product reading task and native web behavior",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-07"
+    },
+    {
+      "dimension": "08 Imagery & Material",
+      "source": "proposed",
+      "contribution": "Product reading task and native web behavior",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-08"
+    },
+    {
+      "dimension": "09 Motion & States",
+      "source": "proposed",
+      "contribution": "Product reading task and native web behavior",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-09"
+    },
+    {
+      "dimension": "10 Responsive / Platform Adaptation",
+      "source": "proposed",
+      "contribution": "Product reading task and native web behavior",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-10"
+    },
+    {
+      "dimension": "11 Content Density",
+      "source": "primary",
+      "contribution": "overall grammar",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-11"
+    },
+    {
+      "dimension": "12 Signature Gestures",
+      "source": "primary",
+      "contribution": "overall grammar",
+      "decision": "adapted",
+      "rationale": "Preserve the useful reading mechanism while adapting to real bilingual content.",
+      "judgment": "J-12"
+    }
+  ],
+  "dna": [
+    {
+      "id": "DNA-1",
+      "source": "J-01: analysis of reading hierarchy and explicit product adaptation",
+      "pass": "One essay title leads the first glance; secondary choices visibly recede.",
+      "failure": "Equal-weight preview cards compete with the main essay title.",
+      "strategy_rule": "Prioritize title comprehension, then reading continuity, then discovery."
+    },
+    {
+      "id": "DNA-2",
+      "source": "J-05: analysis of reading hierarchy and explicit product adaptation",
+      "pass": "Whitespace separates prose groups without repeated card containment.",
+      "failure": "Every paragraph or article row gains its own border and shadow.",
+      "strategy_rule": "Prioritize title comprehension, then reading continuity, then discovery."
+    },
+    {
+      "id": "DNA-3",
+      "source": "J-02: analysis of reading hierarchy and explicit product adaptation",
+      "pass": "The read action has stronger concentrated emphasis than saving or navigation.",
+      "failure": "Save and all navigation items receive the same filled brand treatment.",
+      "strategy_rule": "Prioritize title comprehension, then reading continuity, then discovery."
+    },
+    {
+      "id": "DNA-4",
+      "source": "J-03: analysis of reading hierarchy and explicit product adaptation",
+      "pass": "Serif title and neutral body roles remain clearly distinguishable.",
+      "failure": "All title and body roles differ only by a negligible size change.",
+      "strategy_rule": "Prioritize title comprehension, then reading continuity, then discovery."
+    },
+    {
+      "id": "DNA-5",
+      "source": "J-09: analysis of reading hierarchy and explicit product adaptation",
+      "pass": "State feedback preserves the reading column and current text position.",
+      "failure": "Feedback overlays or shifts the paragraph currently being read.",
+      "strategy_rule": "Prioritize title comprehension, then reading continuity, then discovery."
+    },
+    {
+      "id": "DNA-6",
+      "source": "J-07: analysis of reading hierarchy and explicit product adaptation",
+      "pass": "Outline icons assist adjacent words with consistent weight and no competing focus.",
+      "failure": "Mixed icon weights or circular badges become the visual focus.",
+      "strategy_rule": "Prioritize title comprehension, then reading continuity, then discovery."
+    }
+  ],
+  "exceptions": [
+    {
+      "category": "imagery",
+      "item": "Decorative photographic content for essay selection",
+      "scope": "Current text-only essay selection and reading screens",
+      "reason": "Title and synopsis already carry subject and mood; media would compete.",
+      "alternative": "Retain complete textual hierarchy and intentional neutral canvas."
+    },
+    {
+      "category": "motion",
+      "item": "Expansion and expressive decorative motion behaviors",
+      "scope": "No expandable region exists in the current reading inventory",
+      "reason": "Animation without a state purpose adds attention cost for readers.",
+      "alternative": "Immediate reduced-motion feedback and short continuity transitions."
+    }
+  ],
+  "checks": {
+    "color": {
+      "pass": true,
+      "evidence": "evidence/color-palette-board.svg",
+      "reason": "Fixture color review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "typography": {
+      "pass": true,
+      "evidence": "evidence/typography-specimen.svg",
+      "reason": "Fixture typography review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "layout": {
+      "pass": true,
+      "evidence": "evidence/layout-atlas.svg",
+      "reason": "Fixture layout review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "geometry": {
+      "pass": true,
+      "evidence": "evidence/spacing-geometry-sheet.svg",
+      "reason": "Fixture geometry review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "components": {
+      "pass": true,
+      "evidence": "evidence/component-specimen.svg",
+      "reason": "Fixture components review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "icons": {
+      "pass": true,
+      "evidence": "evidence/icon-style-sheet.svg",
+      "reason": "Fixture icons review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "imagery": {
+      "pass": true,
+      "evidence": "IMAGERY.md",
+      "reason": "Fixture imagery review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "motion": {
+      "pass": true,
+      "evidence": "MOTION.md",
+      "reason": "Fixture motion review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "reference_boundary": {
+      "pass": true,
+      "evidence": "REFERENCE_INFLUENCE.md",
+      "reason": "Fixture reference boundary review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "rejected_traits": {
+      "pass": true,
+      "evidence": "DO_DONT.md",
+      "reason": "Fixture rejected traits review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "decorative_dependency": {
+      "pass": true,
+      "evidence": "evidence/style-tile.svg",
+      "reason": "Fixture decorative dependency review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "content_fit": {
+      "pass": true,
+      "evidence": "evidence/representative-screen.svg",
+      "reason": "Fixture content fit review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "smallest_target": {
+      "pass": true,
+      "evidence": "evidence/representative-screen-small.svg",
+      "reason": "Fixture smallest target review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "component_token_match": {
+      "pass": true,
+      "evidence": "evidence/render-manifest.json",
+      "reason": "Fixture component token match review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    },
+    "representative_manual_match": {
+      "pass": true,
+      "evidence": "evidence/representative-screen.svg",
+      "reason": "Fixture representative manual match review: title-first hierarchy, semantic role discipline and uninterrupted reading agree with the stated creative thesis. This example assertion is not a substitute for reviewing a real project."
+    }
+  },
+  "representative": {
+    "file": "evidence/representative-screen.svg",
+    "pattern": "essay-compact",
+    "components": [
+      "read-primary",
+      "save-secondary",
+      "essay-surface",
+      "navigation"
+    ],
+    "viewport": "390 × 844 CSS-pixel fixture canvas",
+    "rationale": "Long bilingual content and the relationship between a dominant title and two actions expose hierarchy and content-fit risk.",
+    "strategy_rule": "One essay earns attention before secondary choices; saving must recede.",
+    "dna_ids": [
+      "DNA-1",
+      "DNA-2",
+      "DNA-3",
+      "DNA-4"
+    ]
+  },
+  "reviewed_by": "Example fixture author; repeat real project review before approval"
+}

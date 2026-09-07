@@ -1,5 +1,7 @@
 # Color discipline
 
+Phase 2 canonical workflow: [color system](phase-2/color-system.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Define color as a governed visual budget, not a list of swatches.
 
 For each important color record:

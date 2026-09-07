@@ -2,7 +2,7 @@
 
 ## Before implementation
 
-- Confirm the approved standard version or explicit Direct-mode assumptions.
+- Run `status --require implement` in every mode: require the approved or assumed, validated Phase 2 lock. Read DESIGN_STRATEGY.md, MASTER.md and the relevant PAGE_PATTERNS.md pattern before composing.
 - Confirm the Reference Contract and approved Visual DNA; rejected traits remain prohibited.
 - Inspect the repository, existing components, tokens, assets, fonts, and target platform configuration.
 - Identify real content lengths and required states. Do not invent a grid of generic cards just to match a reference.

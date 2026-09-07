@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Manage Visual UI Director 2.0 decisions, evidence, scores, and drift."""
+"""Manage Visual UI Director decisions, Phase 2 manuals, evidence, scores, and drift."""
 
 from __future__ import annotations
 
@@ -13,6 +13,9 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import phase2
+from render_design_specimens import render as render_specimens
 
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
@@ -42,16 +45,8 @@ DRIFT_FIELDS = {
     "icon_style": "Icon drift",
     "card_signature": "Component drift",
 }
-STANDARD_DOCS = {
-    "COLOR.md": "# Color\n\nDefine roles, budgets, frequency, priority, prohibitions, state pairs, and platform aliases.\n",
-    "TYPOGRAPHY.md": "# Typography\n\nDefine role character, hierarchy, measure, line height, weight contrast, numerics, alignment, and fallbacks.\n",
-    "SPACING.md": "# Spacing\n\nDefine micro, component, section, macro, and hero rhythms plus responsive compression.\n",
-    "ICONOGRAPHY.md": "# Iconography\n\nDefine family, fill/stroke, weight, corners, optical size, states, containers, labels, and source.\n",
-    "IMAGERY.md": "# Imagery\n\nDefine medium, subject, angle, crop, lighting, grade, background, aspect ratios, and fallbacks.\n",
-    "MOTION.md": "# Motion\n\nDefine purpose, personality, entry, exit, feedback, transitions, loading, interruption, and reduced motion.\n",
-    "COMPONENTS.md": "# Components\n\nDefine content behavior, visual relationships, and required states.\n",
-    "RESPONSIVE.md": "# Responsive Composition\n\nDefine focal hierarchy, transformations, and content-failure thresholds by target.\n",
-}
+STANDARD_DOCS = phase2.DOCS
+
 
 
 def now_iso() -> str:
@@ -143,6 +138,8 @@ def init_workspace(
     directory = workspace(root)
     if directory.exists() and not force:
         raise SystemExit(f"Workspace already exists at {directory}; use --force only after reviewing it.")
+    if directory.exists() and force:
+        shutil.move(str(directory), str(directory.with_name(WORKSPACE_NAME + "-backup-" + stamp())))
     directory.mkdir(parents=True, exist_ok=True)
     for name in (
         "screenshots", "critiques", "scores", "overrides", "history",
@@ -153,7 +150,7 @@ def init_workspace(
     direct = mode == "direct"
     created = now_iso()
     project = {
-        "schema_version": 2,
+        "schema_version": 3,
         "project_name": project_name,
         "mode": mode,
         "target_platforms": list(dict.fromkeys(platforms)),
@@ -162,7 +159,7 @@ def init_workspace(
         "quality_threshold": 80,
         "approval_state": {
             "gate_a": "assumed" if direct else "pending",
-            "gate_b": "assumed" if direct else "draft",
+            "gate_b": "draft",
             "gate_c": "pending",
         },
         "platform_qa": [],
@@ -179,7 +176,7 @@ def init_workspace(
         "platform_targets": project["target_platforms"],
     }
     decisions = {
-        "schema_version": 2,
+        "schema_version": 3,
         "events": [{"at": created, "event": "workspace_initialized", "details": {"mode": mode}}],
     }
     atomic_json(directory / "project.json", project)
@@ -187,11 +184,8 @@ def init_workspace(
     atomic_json(directory / "decisions.json", decisions)
     copy_template("reference-board.md", directory / "reference-board.md", project_name)
     copy_template("reference-contract.md", directory / "REFERENCE_CONTRACT.md", project_name)
-    copy_template("visual-dna.md", directory / "visual-dna.md", project_name)
-    copy_template("visual-standard.md", directory / "standards/v1/MASTER.md", project_name)
-    copy_template("tokens.json", directory / "standards/v1/TOKENS.json", project_name)
-    for name, content in STANDARD_DOCS.items():
-        atomic_text(directory / "standards/v1" / name, content)
+    phase2.seed(directory / "standards/v1", project_name)
+    phase2.alias_dna(directory, "v1")
     atomic_text(directory / "standards/current", "v1\n")
     return directory
 
@@ -200,7 +194,7 @@ def init_cmd(args: argparse.Namespace) -> None:
     directory = init_workspace(
         args.root, args.project, args.mode, args.platform, args.main_target_device, args.force
     )
-    print(f"Created Visual UI Director 2.0 workspace at {directory}")
+    print(f"Created Visual UI Director Phase 2 workspace at {directory}")
 
 
 def parse_reference(value: str) -> dict[str, str]:
@@ -215,7 +209,7 @@ def reference_contract(project: dict[str, Any], refs: dict[str, Any], confirmed_
     lines = lambda values: "\n".join(f"- {value}" for value in values) or "- None recorded"
     return f"""# {project['project_name']} — Reference Contract
 
-Status: Confirmed
+Status: {"Assumed" if project["mode"] == "direct" else "Confirmed"}
 Confirmed by: {confirmed_by}
 Confirmed at: {now_iso()}
 
@@ -267,24 +261,20 @@ def select_cmd(args: argparse.Namespace) -> None:
         "confirmed_by": args.confirmed_by,
         "confirmed_at": now_iso(),
     }
+    if any(not item["reference"] or item["contribution"] == "unspecified" for item in [refs["primary"], *secondary]):
+        raise SystemExit("Each reference needs REFERENCE|CONTRIBUTION; secondary contributions must be bounded.")
     atomic_json(directory / "references.json", refs)
     atomic_text(directory / "REFERENCE_CONTRACT.md", reference_contract(project, refs, args.confirmed_by))
-    project["approval_state"]["gate_a"] = "confirmed"
+    project["approval_state"]["gate_a"] = "assumed" if project["mode"] == "direct" else "confirmed"
     project["approval_state"]["gate_b"] = "draft"
     project["approval_state"]["gate_c"] = "pending"
     save_project(directory, project)
     record_event(directory, decisions, "gate_a_confirmed", {"primary": refs["primary"], "secondary": secondary})
-    print("Gate A confirmed and REFERENCE_CONTRACT.md updated.")
+    print(f"Gate A {project['approval_state']['gate_a']} and REFERENCE_CONTRACT.md updated.")
 
 
 def dna_principles(path: Path) -> list[str]:
-    if not path.exists():
-        return []
-    return [
-        line.strip()
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if re.match(r"^\s*\d+\.\s+\S", line) and "{{" not in line
-    ]
+    return phase2.principles(path)
 
 
 def copy_evidence(source: str, destination_dir: Path, label: str) -> str:
@@ -292,41 +282,144 @@ def copy_evidence(source: str, destination_dir: Path, label: str) -> str:
     if not path.is_file():
         raise SystemExit(f"{label} evidence does not exist: {path}")
     target = destination_dir / f"{slug(label)}{path.suffix.lower()}"
-    shutil.copy2(path, target)
+    destination_dir.mkdir(parents=True, exist_ok=True)
+    if path != target.resolve():
+        shutil.copy2(path, target)
     return target.name
 
 
 def approve_gate_b(args: argparse.Namespace, directory: Path, project: dict[str, Any], decisions: dict[str, Any]) -> None:
-    if project["mode"] != "direct" and project["approval_state"]["gate_a"] != "confirmed":
-        raise SystemExit("Gate A is not confirmed.")
-    principles = dna_principles(directory / "visual-dna.md")
-    if not 5 <= len(principles) <= 8:
-        raise SystemExit("visual-dna.md must contain 5–8 numbered, non-placeholder principles.")
-    version_dir = directory / "standards" / args.version
-    master = version_dir / "MASTER.md"
-    tokens = version_dir / "TOKENS.json"
-    if not master.exists() or not tokens.exists():
-        raise SystemExit(f"{version_dir} must contain MASTER.md and TOKENS.json.")
-    missing_docs = [name for name in STANDARD_DOCS if not (version_dir / name).exists()]
-    if missing_docs:
-        raise SystemExit("Design system is missing: " + ", ".join(missing_docs))
-    atomic_text(version_dir / "VISUAL_DNA.md", (directory / "visual-dna.md").read_text(encoding="utf-8"))
-    evidence_dir = version_dir / "evidence"
-    evidence_dir.mkdir(parents=True, exist_ok=True)
-    evidence = {
-        "style_tile": copy_evidence(args.style_tile, evidence_dir, "style-tile"),
-        "representative_screen": copy_evidence(args.representative_screen, evidence_dir, "representative-screen"),
-        "wireframe": copy_evidence(args.wireframe, evidence_dir, "wireframe"),
-    }
+    version_dir = phase2.standard_path(directory, args.version)
+    # Repeated approval of an unchanged version is harmless; never re-lock changed history.
+    if args.version in project.get("phase2_locks", {}):
+        if args.version != project["current_design_version"] or phase2.lock_errors(directory, project):
+            raise SystemExit("This version was locked and has changed; use phase2 upgrade --version NEW.")
+        print(f"Gate B already locked for {args.version}.")
+        return
+    if not version_dir.is_dir():
+        raise SystemExit(f"Missing standard: {version_dir}")
+    refs = read_json(directory / "references.json")
+    # Stage optional legacy evidence imports: a negative approval must not change the workspace.
+    with tempfile.TemporaryDirectory(prefix="visual-director-gate-b-") as temporary:
+        staging = Path(temporary)
+        shutil.copytree(version_dir, staging / "standards" / args.version)
+        for name in ("REFERENCE_CONTRACT.md", "references.json"):
+            if (directory / name).exists():
+                shutil.copy2(directory / name, staging / name)
+        staged = staging / "standards" / args.version
+        imports = {}
+        for key, label in (("style_tile", "style-tile-import"), ("representative_screen", "representative-screen"), ("wireframe", "wireframe")):
+            source = getattr(args, key, None)
+            if source:
+                source_path = Path(source).expanduser().resolve()
+                phase2.validate_image(source_path)
+                canonical = {"style_tile": "style-tile.svg", "wireframe": "layout-atlas.svg"}.get(key)
+                existing = staged / "evidence" / (canonical or ("representative-screen" + source_path.suffix.lower()))
+                if existing.is_file() and phase2.digest(existing) == phase2.digest(source_path):
+                    imports[key] = existing.name
+                else:
+                    imports[key] = copy_evidence(source, staged / "evidence", label)
+        if "representative_screen" in imports:
+            review = read_json(staged / "REVIEW.json")
+            review["representative"]["file"] = "evidence/" + imports["representative_screen"]
+            atomic_json(staged / "REVIEW.json", review)
+        failures = phase2.validate(staging, project, refs, args.version)
+        if failures:
+            raise SystemExit("Gate B validation failed:\n- " + "\n- ".join(failures))
+        for name in imports.values():
+            shutil.copy2(staged / "evidence" / name, version_dir / "evidence" / name)
+        if "representative_screen" in imports:
+            shutil.copy2(staged / "REVIEW.json", version_dir / "REVIEW.json")
     atomic_text(directory / "standards/current", args.version + "\n")
+    phase2.alias_dna(directory, args.version, preserve=True)
     project["current_design_version"] = args.version
-    project["approval_state"]["gate_b"] = "confirmed"
+    state = "assumed" if project["mode"] == "direct" else "confirmed"
+    project["approval_state"]["gate_b"] = state
     project["approval_state"]["gate_c"] = "pending"
     project["visual_dna_approved"] = True
-    project["gate_b_confirmed_by"] = args.confirmed_by
+    project["gate_b_confirmed_by"] = "Direct mode assumption" if state == "assumed" else args.confirmed_by
+    project["schema_version"] = 3
+    snapshot = phase2.snapshot(directory, project, args.version)
+    project.setdefault("phase2_locks", {})[args.version] = snapshot
+    atomic_json(version_dir / "LOCK.json", {"version": args.version, "status": state, "at": now_iso(), "snapshot": snapshot})
     save_project(directory, project)
-    record_event(directory, decisions, "gate_b_confirmed", {"version": args.version, "evidence": evidence})
-    print(f"Gate B confirmed for {args.version}.")
+    record_event(directory, decisions, "gate_b_" + state, {"version": args.version, "evidence": imports, "lock": "STRATEGY & DESIGN MANUAL LOCK"})
+    print(f"Gate B — Strategy & Design Manual Lock {state} for {args.version}.")
+
+
+def phase2_cmd(args: argparse.Namespace) -> None:
+    directory, project, refs, decisions = load_workspace(args.root)
+    version = args.version or project["current_design_version"]
+    standard = phase2.standard_path(directory, version)
+    if args.action == "upgrade":
+        if not args.version or standard.exists():
+            raise SystemExit("upgrade requires --version NEW, a version directory that does not exist.")
+        source = phase2.standard_path(directory, project["current_design_version"])
+        shutil.copytree(source, standard)
+        for name in ("LOCK.json",):
+            (standard / name).unlink(missing_ok=True)
+        phase2.seed(standard, project["project_name"])
+        # The previous version preserves legacy spacing; the new version has one canonical owner.
+        if (source / "SPACING.md").is_file():
+            atomic_text(standard / "SPACING.md", "# Spacing compatibility entry\n\nSee [SPACING_GEOMETRY.md](SPACING_GEOMETRY.md) for current rules. Legacy authored spacing remains in the previous version.\n")
+        # Preserve legacy DNA; newly seeded scaffold must not displace authored 2.0 DNA.
+        legacy_dna = directory / "visual-dna.md"
+        if legacy_dna.is_file() and not legacy_dna.is_symlink():
+            shutil.copy2(legacy_dna, standard / "VISUAL_DNA.md")
+        review = read_json(standard / "REVIEW.json")
+        review["status"] = "draft"
+        review["reference_contract_sha256"] = ""
+        for check in review.get("checks", {}).values():
+            check["pass"] = False
+        atomic_json(standard / "REVIEW.json", review)
+        project["current_design_version"] = version
+        project["approval_state"]["gate_b"] = "draft"
+        project["approval_state"]["gate_c"] = "pending"
+        project["visual_dna_approved"] = False
+        project["schema_version"] = 3
+        phase2.alias_dna(directory, version, preserve=True)
+        atomic_text(directory / "standards/current", version + "\n")
+        save_project(directory, project)
+        record_event(directory, decisions, "phase2_version_created", {"version": version, "source": source.name})
+        print(f"Created {version}; preserved {source.name}. Run phase2 start, review and re-render before Gate B.")
+        return
+    failures = phase2.reference_errors(directory, project, refs)
+    if failures:
+        raise SystemExit("Phase 2 preconditions failed:\n- " + "\n- ".join(failures))
+    if args.action == "start":
+        phase2.ensure_editable(project, version)
+        phase2.seed(standard, project["project_name"])
+        review = read_json(standard / "REVIEW.json")
+        checksum = phase2.digest(directory / "REFERENCE_CONTRACT.md")
+        if review.get("reference_contract_sha256") != checksum:
+            review["status"] = "draft"
+            for check in review.get("checks", {}).values(): check["pass"] = False
+        review["reference_contract_sha256"] = checksum
+        review["context"]["platforms"] = project["target_platforms"]
+        if project.get("main_target_device"): review["context"]["device"] = project["main_target_device"]
+        atomic_json(standard / "REVIEW.json", review)
+        record_event(directory, decisions, "phase2_started", {"version": version, "reference_contract_sha256": checksum})
+        print(f"Phase 2 started at {standard}; contract loaded, analysis and judgment required.")
+    elif args.action == "render":
+        phase2.ensure_editable(project, version)
+        manifest = render_specimens(standard)
+        record_event(directory, decisions, "phase2_specimens_rendered", {"version": version, "files": list(manifest["files"])})
+        print(json.dumps(manifest, ensure_ascii=False, indent=2))
+    elif args.action == "review":
+        phase2.ensure_editable(project, version)
+        failures = phase2.validate(directory, project, refs, version, review_seal=False)
+        if failures:
+            raise SystemExit("Cannot seal an incomplete coherence review:\n- " + "\n- ".join(failures))
+        review = read_json(standard / "REVIEW.json")
+        if args.reviewed_by: review["reviewed_by"] = args.reviewed_by
+        review["reviewed_inputs"] = phase2.review_inputs(standard)
+        atomic_json(standard / "REVIEW.json", review)
+        record_event(directory, decisions, "phase2_coherence_review_sealed", {"version": version, "reviewed_by": review["reviewed_by"]})
+        print("Coherence review bound to the current manual and visual evidence. This records your inspection; it does not perform aesthetic review.")
+    else:
+        failures = phase2.validate(directory, project, refs, version)
+        print(json.dumps({"version": version, "valid": not failures, "errors": failures}, ensure_ascii=False, indent=2))
+        if failures: raise SystemExit(1)
 
 
 def score_files(directory: Path) -> list[Path]:
@@ -344,7 +437,10 @@ def latest_scores(directory: Path) -> dict[str, dict[str, Any]]:
 def approve_gate_c(args: argparse.Namespace, directory: Path, project: dict[str, Any], decisions: dict[str, Any]) -> None:
     if project["approval_state"]["gate_b"] not in {"confirmed", "assumed"}:
         raise SystemExit("Gate B is not approved.")
-    if not 5 <= len(dna_principles(directory / "visual-dna.md")) <= 8:
+    lock_failures = phase2.lock_errors(directory, project)
+    if lock_failures:
+        raise SystemExit("Gate C requires a current Phase 2 lock: " + "; ".join(lock_failures))
+    if not 5 <= len(dna_principles(directory / "standards" / project["current_design_version"] / "VISUAL_DNA.md")) <= 8:
         raise SystemExit("Gate C requires 5–8 completed Visual DNA principles.")
     if not project.get("visual_dna_approved") and project["mode"] != "direct":
         raise SystemExit("Visual DNA approval is missing.")
@@ -539,8 +635,10 @@ def audit_cmd(args: argparse.Namespace) -> None:
 def status_cmd(args: argparse.Namespace) -> None:
     directory, project, refs, _ = load_workspace(args.root)
     gates = project["approval_state"]
-    can_decompose = project["mode"] == "direct" or gates["gate_a"] == "confirmed"
-    can_implement = project["mode"] == "direct" or gates["gate_b"] == "confirmed"
+    preconditions = phase2.reference_errors(directory, project, refs)
+    can_decompose = not preconditions
+    lock_failures = phase2.lock_errors(directory, project)
+    can_implement = gates["gate_b"] in {"assumed", "confirmed"} and not lock_failures
     result = {
         "project": project["project_name"],
         "schema_version": project["schema_version"],
@@ -550,13 +648,15 @@ def status_cmd(args: argparse.Namespace) -> None:
         "current_design_version": project["current_design_version"],
         "gates": gates,
         "reference_primary": refs.get("primary"),
-        "visual_dna_principles": len(dna_principles(directory / "visual-dna.md")),
+        "visual_dna_principles": len(dna_principles(directory / "standards" / project["current_design_version"] / "VISUAL_DNA.md")),
         "score_records": len(score_files(directory)),
         "latest_scores": latest_scores(directory),
         "overrides": len(list((directory / "overrides").glob("*.json"))),
         "can_decompose": can_decompose,
         "can_implement": can_implement,
-        "can_deliver": gates["gate_c"] == "confirmed",
+        "can_deliver": gates["gate_c"] == "confirmed" and can_implement,
+        "phase2_preconditions": preconditions,
+        "phase2_lock_errors": lock_failures,
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if args.require == "decompose" and not can_decompose:
@@ -583,7 +683,7 @@ def migrate_cmd(args: argparse.Namespace) -> None:
     if not legacy.exists():
         raise SystemExit(f"No 1.x workspace found at {legacy}.")
     if workspace(args.root).exists():
-        raise SystemExit(f"A 2.0 workspace already exists at {workspace(args.root)}.")
+        raise SystemExit(f"A .design-director workspace already exists at {workspace(args.root)}.")
     state_path = legacy / "decision.json"
     if not state_path.exists():
         raise SystemExit("Legacy decision.json is missing.")
@@ -702,20 +802,22 @@ def parser() -> argparse.ArgumentParser:
     migrate = sub.add_parser("migrate", help="Migrate a preserved .visual-ui 1.x workspace")
     migrate.add_argument("--root", required=True)
     migrate.set_defaults(func=migrate_cmd)
+    phase = sub.add_parser("phase2", help="Start, render, validate or version the Phase 2 design manual")
+    phase.add_argument("action", choices=["start", "render", "review", "validate", "upgrade"])
+    phase.add_argument("--root", required=True)
+    phase.add_argument("--version")
+    phase.add_argument("--reviewed-by", help="Reviewer identity for phase2 review, after actual inspection")
+    phase.set_defaults(func=phase2_cmd)
     return result
 
 
 def main() -> None:
     args = parser().parse_args()
-    if args.command == "approve" and args.gate == "b":
-        missing = [
-            name
-            for name in ("style_tile", "representative_screen", "wireframe")
-            if not getattr(args, name)
-        ]
-        if missing:
-            raise SystemExit("Gate B requires evidence arguments: " + ", ".join(missing))
-    args.func(args)
+    try:
+        args.func(args)
+    except (ValueError, OSError, KeyError, TypeError) as exc:
+        raise SystemExit(str(exc)) from exc
+
 
 
 if __name__ == "__main__":

@@ -1,0 +1,948 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "title": "静读 / Margin — one essay, an unhurried decision",
+  "languages": [
+    "zh-CN",
+    "en"
+  ],
+  "colors": [
+    {
+      "group": "Neutral",
+      "role": "canvas",
+      "token": "{color.semantic.canvas}",
+      "pair": "{color.semantic.text}",
+      "usage": "Long-form reading background",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "surface",
+      "token": "{color.semantic.surface}",
+      "pair": "{color.semantic.text}",
+      "usage": "Contained search result only",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "elevated",
+      "token": "{color.semantic.elevated}",
+      "pair": "{color.semantic.text}",
+      "usage": "Temporary feedback layer",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "text",
+      "token": "{color.semantic.text}",
+      "pair": "{color.semantic.canvas}",
+      "usage": "Article and decision title",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "muted",
+      "token": "{color.semantic.muted}",
+      "pair": "{color.semantic.canvas}",
+      "usage": "Summary and metadata",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "tertiary",
+      "token": "{color.semantic.tertiary}",
+      "pair": "{color.semantic.canvas}",
+      "usage": "Low-priority publication information",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "border",
+      "token": "{color.semantic.border}",
+      "pair": "{color.semantic.canvas}",
+      "usage": "Input boundary; never every paragraph",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Neutral",
+      "role": "divider",
+      "token": "{color.semantic.divider}",
+      "pair": "{color.semantic.text}",
+      "usage": "Quiet article-group separator; not an interactive boundary",
+      "frequency": "According to content hierarchy",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Brand",
+      "role": "brand",
+      "token": "{color.semantic.brand}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "One primary reading action",
+      "frequency": "One primary accent per decision region",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Brand",
+      "role": "brand_soft",
+      "token": "{color.semantic.brand_soft}",
+      "pair": "{color.semantic.brand_strong}",
+      "usage": "Selected reading filter",
+      "frequency": "One primary accent per decision region",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Brand",
+      "role": "brand_strong",
+      "token": "{color.semantic.brand_strong}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "Pressed reading action",
+      "frequency": "One primary accent per decision region",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "success",
+      "token": "{color.semantic.success}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "Saved confirmation",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "warning",
+      "token": "{color.semantic.warning}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "Offline content may be incomplete",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "error",
+      "token": "{color.semantic.error}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "Save failed with retry",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "info",
+      "token": "{color.semantic.info}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "Reading position restored",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "focus",
+      "token": "{color.semantic.focus}",
+      "pair": "{color.semantic.on_brand}",
+      "usage": "Keyboard focus outline",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "disabled",
+      "token": "{color.semantic.disabled}",
+      "pair": "{color.semantic.disabled_bg}",
+      "usage": "Unavailable action with explanatory label",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    },
+    {
+      "group": "Semantic",
+      "role": "selected",
+      "token": "{color.semantic.selected}",
+      "pair": "{color.semantic.brand_strong}",
+      "usage": "Current text filter",
+      "frequency": "State-only",
+      "do": "Keep this semantic meaning across compact and wide views.",
+      "dont": "Do not turn this role into unrelated decoration."
+    }
+  ],
+  "typography": [
+    {
+      "role": "display",
+      "sample": "给今天，留一段安静。"
+    },
+    {
+      "role": "h1",
+      "sample": "把注意力交还给一篇文章"
+    },
+    {
+      "role": "h2",
+      "sample": "城市里缓慢生长的树"
+    },
+    {
+      "role": "title",
+      "sample": "今日选读 · A quieter city"
+    },
+    {
+      "role": "body",
+      "sample": "下班后，用十二分钟读完一个完整的故事。Read one thoughtful essay, without an endless stream of choices."
+    },
+    {
+      "role": "label",
+      "sample": "开始阅读 · Read now"
+    },
+    {
+      "role": "caption",
+      "sample": "周一更新 · 约 12 分钟 · 中英双语"
+    },
+    {
+      "role": "numeric",
+      "sample": "12:08 · 2026 / 09"
+    }
+  ],
+  "geometry": {
+    "spacing": [
+      {
+        "label": "micro",
+        "token": "{space.micro}"
+      },
+      {
+        "label": "component",
+        "token": "{space.component}"
+      },
+      {
+        "label": "group",
+        "token": "{space.group}"
+      },
+      {
+        "label": "section",
+        "token": "{space.section}"
+      },
+      {
+        "label": "macro",
+        "token": "{space.macro}"
+      },
+      {
+        "label": "hero",
+        "token": "{space.hero}"
+      }
+    ],
+    "radii": [
+      {
+        "label": "control — distinct purpose",
+        "token": "{radius.control}"
+      },
+      {
+        "label": "surface — distinct purpose",
+        "token": "{radius.surface}"
+      },
+      {
+        "label": "hero — distinct purpose",
+        "token": "{radius.hero}"
+      },
+      {
+        "label": "chip — distinct purpose",
+        "token": "{radius.chip}"
+      }
+    ],
+    "borders": [
+      {
+        "label": "Input boundary",
+        "width": "{border.hairline}",
+        "color": "{color.semantic.border}"
+      },
+      {
+        "label": "Focus ring",
+        "width": "{border.focus}",
+        "color": "{color.semantic.focus}"
+      },
+      {
+        "label": "Uncontained article",
+        "width": "{border.none}",
+        "color": "{color.semantic.canvas}"
+      }
+    ],
+    "surfaces": [
+      {
+        "label": "Reading canvas, no elevation",
+        "color": "{color.semantic.canvas}",
+        "radius": "{radius.surface}",
+        "shadow": "{shadow.none}"
+      },
+      {
+        "label": "Transient feedback, limited elevation",
+        "color": "{color.semantic.elevated}",
+        "radius": "{radius.control}",
+        "shadow": "{shadow.overlay}"
+      }
+    ]
+  },
+  "patterns": [
+    {
+      "id": "essay-compact",
+      "name": "Hero Decision / compact",
+      "purpose": "Choose one essay",
+      "reading_path": "Title → synopsis → one action",
+      "density": "Low at the title; medium in synopsis and reading content",
+      "scrolling": "Document scroll; navigation stays in normal flow",
+      "avoid": "Equal-weight card grid or floating ornament over text",
+      "transformation": "Wide separates title and synopsis; compact stacks them while preserving the title as first focus. Reading text maintains a bounded measure.",
+      "regions": [
+        {
+          "label": "Navigation",
+          "x": 0,
+          "y": 0,
+          "w": 100,
+          "h": 12,
+          "level": "tertiary"
+        },
+        {
+          "label": "Essay title",
+          "x": 0,
+          "y": 18,
+          "w": 100,
+          "h": 35,
+          "level": "primary"
+        },
+        {
+          "label": "Synopsis",
+          "x": 0,
+          "y": 58,
+          "w": 100,
+          "h": 18,
+          "level": "secondary"
+        },
+        {
+          "label": "Read action",
+          "x": 0,
+          "y": 82,
+          "w": 100,
+          "h": 14,
+          "level": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "essay-wide",
+      "name": "Hero Decision / wide",
+      "purpose": "Choose one essay",
+      "reading_path": "Title → synopsis → one action",
+      "density": "Low at the title; medium in synopsis and reading content",
+      "scrolling": "Document scroll; navigation stays in normal flow",
+      "avoid": "Equal-weight card grid or floating ornament over text",
+      "transformation": "Wide separates title and synopsis; compact stacks them while preserving the title as first focus. Reading text maintains a bounded measure.",
+      "regions": [
+        {
+          "label": "Navigation",
+          "x": 0,
+          "y": 0,
+          "w": 100,
+          "h": 12,
+          "level": "tertiary"
+        },
+        {
+          "label": "Essay title",
+          "x": 0,
+          "y": 22,
+          "w": 62,
+          "h": 50,
+          "level": "primary"
+        },
+        {
+          "label": "Synopsis",
+          "x": 68,
+          "y": 22,
+          "w": 32,
+          "h": 38,
+          "level": "secondary"
+        },
+        {
+          "label": "Read",
+          "x": 68,
+          "y": 68,
+          "w": 32,
+          "h": 15,
+          "level": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "archive",
+      "name": "Editorial List",
+      "purpose": "Scan the archive without cards",
+      "reading_path": "Heading → article titles in sequence",
+      "density": "Low at the title; medium in synopsis and reading content",
+      "scrolling": "Document scroll; navigation stays in normal flow",
+      "avoid": "Equal-weight card grid or floating ornament over text",
+      "transformation": "Wide separates title and synopsis; compact stacks them while preserving the title as first focus. Reading text maintains a bounded measure.",
+      "regions": [
+        {
+          "label": "Navigation",
+          "x": 0,
+          "y": 0,
+          "w": 100,
+          "h": 12,
+          "level": "tertiary"
+        },
+        {
+          "label": "Archive heading",
+          "x": 0,
+          "y": 18,
+          "w": 100,
+          "h": 20,
+          "level": "primary"
+        },
+        {
+          "label": "Article 1",
+          "x": 0,
+          "y": 44,
+          "w": 100,
+          "h": 14,
+          "level": "secondary"
+        },
+        {
+          "label": "Article 2",
+          "x": 0,
+          "y": 64,
+          "w": 100,
+          "h": 14,
+          "level": "secondary"
+        },
+        {
+          "label": "Article 3",
+          "x": 0,
+          "y": 84,
+          "w": 100,
+          "h": 14,
+          "level": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "reading",
+      "name": "Detail Narrative",
+      "purpose": "Read a continuous narrative",
+      "reading_path": "Title → body → progress",
+      "density": "Low at the title; medium in synopsis and reading content",
+      "scrolling": "Document scroll; navigation stays in normal flow",
+      "avoid": "Equal-weight card grid or floating ornament over text",
+      "transformation": "Wide separates title and synopsis; compact stacks them while preserving the title as first focus. Reading text maintains a bounded measure.",
+      "regions": [
+        {
+          "label": "Back and progress",
+          "x": 0,
+          "y": 0,
+          "w": 100,
+          "h": 12,
+          "level": "tertiary"
+        },
+        {
+          "label": "Article title",
+          "x": 0,
+          "y": 18,
+          "w": 100,
+          "h": 20,
+          "level": "primary"
+        },
+        {
+          "label": "Reading column",
+          "x": 10,
+          "y": 44,
+          "w": 80,
+          "h": 54,
+          "level": "secondary"
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "read-primary",
+      "kind": "button",
+      "name": "Primary reading action",
+      "why": "J-02: one concentrated accent commits to one essay; modest corners distinguish a control from the uncontained article.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.action_width}",
+      "height": "{size.control_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "开始阅读 · Read now",
+          "bg": "{color.semantic.brand}",
+          "fg": "{color.semantic.on_brand}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "pressed",
+          "label": "开始阅读 · Read now",
+          "bg": "{color.semantic.brand_strong}",
+          "fg": "{color.semantic.on_brand}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "hover",
+          "label": "开始阅读 · Read now",
+          "bg": "{color.semantic.brand_strong}",
+          "fg": "{color.semantic.on_brand}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "focus",
+          "label": "开始阅读 · Read now",
+          "bg": "{color.semantic.brand}",
+          "fg": "{color.semantic.on_brand}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}",
+          "focus": "{color.semantic.focus}"
+        },
+        {
+          "name": "disabled",
+          "label": "文章暂不可用",
+          "bg": "{color.semantic.disabled_bg}",
+          "fg": "{color.semantic.disabled}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "loading",
+          "label": "正在打开文章…",
+          "bg": "{color.semantic.brand}",
+          "fg": "{color.semantic.on_brand}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        }
+      ],
+      "omitted_states": {}
+    },
+    {
+      "id": "save-secondary",
+      "kind": "button",
+      "name": "Secondary save action",
+      "why": "J-06: saving is reversible and visually secondary; it must not compete with the reading CTA.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.action_width}",
+      "height": "{size.control_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "稍后再读 · Save",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.border}",
+          "radius": "{radius.control}",
+          "border_width": "{border.hairline}"
+        },
+        {
+          "name": "pressed",
+          "label": "已加入待读",
+          "bg": "{color.semantic.brand_soft}",
+          "fg": "{color.semantic.brand_strong}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "hover",
+          "label": "稍后再读 · Save",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.border}",
+          "radius": "{radius.control}",
+          "border_width": "{border.hairline}"
+        },
+        {
+          "name": "focus",
+          "label": "稍后再读 · Save",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.border}",
+          "radius": "{radius.control}",
+          "border_width": "{border.hairline}",
+          "focus": "{color.semantic.focus}"
+        },
+        {
+          "name": "disabled",
+          "label": "当前不可保存",
+          "bg": "{color.semantic.disabled_bg}",
+          "fg": "{color.semantic.disabled}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "loading",
+          "label": "正在保存…",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.muted}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        }
+      ],
+      "omitted_states": {}
+    },
+    {
+      "id": "essay-surface",
+      "kind": "surface",
+      "name": "Uncontained essay summary",
+      "why": "J-05: whitespace contains editorial content; a border would imply an unrelated clickable card.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.surface_width}",
+      "height": "{size.surface_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "城市里缓慢生长的树\n用十二分钟，重新观察每天经过的街道。",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.surface}",
+          "border_width": "{border.none}"
+        }
+      ],
+      "omitted_states": {}
+    },
+    {
+      "id": "search",
+      "kind": "input",
+      "name": "Archive search",
+      "why": "J-06: a visible input boundary distinguishes editing from reading.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.surface_width}",
+      "height": "{size.control_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "搜索文章标题",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.muted}",
+          "border": "{color.semantic.border}",
+          "radius": "{radius.control}",
+          "border_width": "{border.hairline}"
+        },
+        {
+          "name": "focus",
+          "label": "城市里的树",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.focus}",
+          "radius": "{radius.control}",
+          "border_width": "{border.focus}",
+          "focus": "{color.semantic.focus}"
+        },
+        {
+          "name": "disabled",
+          "label": "离线索引尚未准备好",
+          "bg": "{color.semantic.disabled_bg}",
+          "fg": "{color.semantic.disabled}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "error",
+          "label": "请输入至少一个文字",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.error}",
+          "border": "{color.semantic.error}",
+          "radius": "{radius.control}",
+          "border_width": "{border.hairline}"
+        }
+      ],
+      "omitted_states": {
+        "hover": "Focus defines editing; hover adds no separate meaning to this text field."
+      }
+    },
+    {
+      "id": "navigation",
+      "kind": "navigation",
+      "name": "Text navigation",
+      "why": "J-10: native links preserve browser navigation and remain subordinate to the essay title.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.navigation_width}",
+      "height": "{size.navigation_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "今日选读",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}",
+          "items": [
+            "今日选读",
+            "文章归档",
+            "我的待读"
+          ]
+        },
+        {
+          "name": "selected",
+          "label": "今日选读",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}",
+          "items": [
+            "今日选读",
+            "文章归档",
+            "我的待读"
+          ],
+          "active_index": 0,
+          "active_fg": "{color.semantic.brand}"
+        },
+        {
+          "name": "focus",
+          "label": "今日选读",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}",
+          "items": [
+            "今日选读",
+            "文章归档",
+            "我的待读"
+          ],
+          "focus": "{color.semantic.focus}",
+          "focus_index": 0
+        }
+      ],
+      "omitted_states": {
+        "hover": "Underline native links on hover; no separate surface treatment is needed."
+      }
+    },
+    {
+      "id": "reading-filter",
+      "kind": "chip",
+      "name": "Language filter",
+      "why": "J-07: a small rectangular selection field is sufficient; pill containers would overemphasize filters.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.chip_width}",
+      "height": "{size.chip_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "中文 · Chinese",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.chip}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "selected",
+          "label": "中文 · Chinese",
+          "bg": "{color.semantic.brand_soft}",
+          "fg": "{color.semantic.brand_strong}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.chip}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "focus",
+          "label": "中文 · Chinese",
+          "bg": "{color.semantic.canvas}",
+          "fg": "{color.semantic.text}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.chip}",
+          "border_width": "{border.none}",
+          "focus": "{color.semantic.focus}"
+        }
+      ],
+      "omitted_states": {
+        "hover": "Text underline conveys pointer affordance without adding an accent."
+      }
+    },
+    {
+      "id": "feedback",
+      "kind": "feedback",
+      "name": "Save result and recovery",
+      "why": "J-09: feedback explains state while leaving the reading column stable.",
+      "content_rule": "Use concise task labels; preserve full article titles rather than ellipsizing the primary decision.",
+      "typography": "label",
+      "width": "{size.feedback_width}",
+      "height": "{size.feedback_height}",
+      "padding": "{space.component}",
+      "states": [
+        {
+          "name": "default",
+          "label": "已保存，下次从这里继续。",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.success}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "error",
+          "label": "保存失败。文章仍在，请重试。",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.error}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        },
+        {
+          "name": "loading",
+          "label": "正在同步阅读位置…",
+          "bg": "{color.semantic.surface}",
+          "fg": "{color.semantic.muted}",
+          "border": "{color.semantic.canvas}",
+          "radius": "{radius.control}",
+          "border_width": "{border.none}"
+        }
+      ],
+      "omitted_states": {}
+    }
+  ],
+  "icons": [
+    {
+      "name": "Bookmark",
+      "source": "Custom geometric study; original fixture paths, not a third-party icon library",
+      "accessible_label": "加入待读",
+      "container_rule": "Default icons have no container; selected bookmark may use a small rectangular field.",
+      "grid": "{icon.grid}",
+      "stroke": "{icon.stroke}",
+      "cap": "{icon.cap}",
+      "join": "{icon.join}",
+      "sizes": [
+        "{icon.small}",
+        "{icon.regular}",
+        "{icon.large}"
+      ],
+      "paths": [
+        "M6 3 H18 V21 L12 17 L6 21 Z"
+      ],
+      "states": {
+        "default": {
+          "color": "{color.semantic.muted}",
+          "fill": "outline"
+        },
+        "active": {
+          "color": "{color.semantic.text}",
+          "fill": "outline"
+        },
+        "selected": {
+          "color": "{color.semantic.brand}",
+          "fill": "outline",
+          "container": "{color.semantic.brand_soft}",
+          "radius": "{radius.chip}"
+        }
+      }
+    },
+    {
+      "name": "Back",
+      "source": "Custom geometric study; original fixture paths, not a third-party icon library",
+      "accessible_label": "返回文章列表",
+      "container_rule": "Default icons have no container; selected bookmark may use a small rectangular field.",
+      "grid": "{icon.grid}",
+      "stroke": "{icon.stroke}",
+      "cap": "{icon.cap}",
+      "join": "{icon.join}",
+      "sizes": [
+        "{icon.small}",
+        "{icon.regular}",
+        "{icon.large}"
+      ],
+      "paths": [
+        "M15 5 L8 12 L15 19",
+        "M8 12 H21"
+      ],
+      "states": {
+        "default": {
+          "color": "{color.semantic.muted}",
+          "fill": "outline"
+        },
+        "active": {
+          "color": "{color.semantic.text}",
+          "fill": "outline"
+        }
+      },
+      "omitted_states": {
+        "selected": "This is an action, not a persistent selection; active feedback applies instead."
+      }
+    },
+    {
+      "name": "Search",
+      "source": "Custom geometric study; original fixture paths, not a third-party icon library",
+      "accessible_label": "搜索文章",
+      "container_rule": "Default icons have no container; selected bookmark may use a small rectangular field.",
+      "grid": "{icon.grid}",
+      "stroke": "{icon.stroke}",
+      "cap": "{icon.cap}",
+      "join": "{icon.join}",
+      "sizes": [
+        "{icon.small}",
+        "{icon.regular}",
+        "{icon.large}"
+      ],
+      "paths": [
+        "M16 16 L21 21",
+        "M18 10 A8 8 0 1 1 2 10 A8 8 0 1 1 18 10"
+      ],
+      "states": {
+        "default": {
+          "color": "{color.semantic.muted}",
+          "fill": "outline"
+        },
+        "active": {
+          "color": "{color.semantic.text}",
+          "fill": "outline"
+        }
+      },
+      "omitted_states": {
+        "selected": "This is an action, not a persistent selection; active feedback applies instead."
+      }
+    }
+  ],
+  "imagery": {
+    "mode": "none",
+    "reason": "This text-led product reduces selection pressure through the article title and synopsis. Decorative photos would compete with reading; fallback remains a readable essay."
+  },
+  "motion_cue": "Read → reading position retained → Saved. Proposed feedback uses motion.feedback; navigation uses motion.transition. Reduced motion updates labels immediately; no looping decoration."
+}

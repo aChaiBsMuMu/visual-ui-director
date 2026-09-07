@@ -1,5 +1,7 @@
 # Reference analysis
 
+Phase 2 canonical workflow: [deep reference analysis](phase-2/deep-reference-analysis.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Analyze the selected set as a coherent visual language. The primary reference controls the overall grammar; secondary references may affect only their assigned traits.
 
 Read [reference decomposition](reference-decomposition.md) first and honor the approved Reference Contract, including rejected traits.

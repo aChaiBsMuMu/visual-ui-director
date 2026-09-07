@@ -11,6 +11,9 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 SCRIPT = REPO / "scripts" / "design_workspace.py"
+sys.path.insert(0, str(REPO / "examples/phase-2"))
+from build_example import populate
+
 DIMENSIONS_84 = [4, 4, 4, 4, 4, 5, 5, 4, 4, 4]
 DIMENSIONS_90 = [5, 5, 4, 4, 5, 5, 5, 4, 4, 4]
 NAMES = [
@@ -70,20 +73,15 @@ class WorkspaceTest(unittest.TestCase):
             refs = json.loads((workspace / "references.json").read_text())
             self.assertEqual(refs["secondary"][0]["contribution"], "photography only")
             self.assertIn("purple gradient", refs["rejected_traits"])
-            dna = "# Visual DNA\n\n" + "\n".join(
-                f"{index}. Observable principle {index} with a visible pass condition."
-                for index in range(1, 7)
-            )
-            (workspace / "visual-dna.md").write_text(dna)
-            evidence = root / "evidence.png"
+            standard = populate(workspace)
+            evidence = standard / "evidence/representative-screen.svg"
             critique = root / "critique.md"
-            evidence.write_bytes(b"rendered-evidence")
             critique.write_text("# Screenshot Critique\nTop Fixes: three")
             self.run_cli(
                 "approve", "--root", temp, "--gate", "b", "--version", "v1",
-                "--style-tile", str(evidence),
+                "--style-tile", str(standard / "evidence/style-tile.svg"),
                 "--representative-screen", str(evidence),
-                "--wireframe", str(evidence),
+                "--wireframe", str(standard / "evidence/layout-atlas.svg"),
             )
             self.record_score(temp, evidence, critique, DIMENSIONS_84)
             self.run_cli(
@@ -156,7 +154,7 @@ class WorkspaceTest(unittest.TestCase):
         self.run_cli(*args)
 
     def test_local_markdown_links_exist(self) -> None:
-        files = [REPO / "SKILL.md", REPO / "README.md", *sorted((REPO / "references").rglob("*.md"))]
+        files = list(REPO.rglob("*.md"))
         pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
         missing = []
         for source in files:

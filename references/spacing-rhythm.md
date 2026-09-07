@@ -1,5 +1,7 @@
 # Spacing rhythm
 
+Phase 2 canonical workflow: [spacing geometry](phase-2/spacing-geometry.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Spacing must create cadence and hierarchy rather than repeat one comfortable interval.
 
 Define project-specific ranges for:

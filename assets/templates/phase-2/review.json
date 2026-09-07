@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "draft",
+  "reference_contract_sha256": "",
+  "context": {
+    "product": "",
+    "users": "",
+    "task": "",
+    "content": "",
+    "platforms": [],
+    "device": "",
+    "smallest_target": ""
+  },
+  "influence": [],
+  "dna": [],
+  "exceptions": [],
+  "checks": {
+    "color": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "typography": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "layout": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "geometry": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "components": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "icons": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "imagery": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "motion": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "reference_boundary": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "rejected_traits": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "decorative_dependency": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "content_fit": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "smallest_target": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "component_token_match": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    },
+    "representative_manual_match": {
+      "pass": false,
+      "evidence": "",
+      "reason": ""
+    }
+  },
+  "representative": {
+    "file": "",
+    "pattern": "",
+    "components": [],
+    "viewport": "",
+    "rationale": "",
+    "strategy_rule": "",
+    "dna_ids": []
+  },
+  "reviewed_by": ""
+}

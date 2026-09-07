@@ -1,5 +1,7 @@
 # Imagery direction
 
+Phase 2 canonical workflow: [imagery material](phase-2/imagery-material.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Choose the media system that carries the product's emotional and informational load: photography, illustration, 3D, product render, iconography, texture, or background treatment.
 
 For each permitted medium define:

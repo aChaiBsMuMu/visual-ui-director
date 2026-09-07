@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "TOKENS.json": "201d45a1f3b688c203fecb7583ab87541da962ab236fffbf7e2151e816a28419",
+    "SPECIMENS.json": "515c293b69121feceea012d99233d41ebe9033b931160621bde37a065861a5ff"
+  },
+  "files": {
+    "color-palette-board.svg": "7ca49d02ee05c9ff5311952af64a498a67f1cf8f2cb713a5631872e85ba6764b",
+    "typography-specimen.svg": "5f4383ae8ed9f036dd2c755424513097eaff1e4815bf71f521ed2718a838f2b1",
+    "spacing-geometry-sheet.svg": "8198b925d87e08e19480ea8187708e150efae2c8a2ec2f2ea2fa79b66d593bee",
+    "layout-atlas.svg": "118b997571be8f7f6fa4a0676d7fa011c8077f1b4b829930d8fc8c006c0f7e67",
+    "component-specimen.svg": "56573b07c4f76ee3ca2552b2b3241b79a143a6c8a82bfd9e2eee90ef0faa6e3b",
+    "icon-style-sheet.svg": "07b2edcc7c50926fdc117d0c9a254253a222dbe8e9e7adc909d52bbde2311013",
+    "style-tile.svg": "07c8aa75ce894301f42bc13c33f604e368033d55f6ca8ffe7b68b7e52ca7229c"
+  },
+  "contrast": [
+    {
+      "token": "{color.semantic.canvas}",
+      "pair": "{color.semantic.text}",
+      "ratio": 12.457,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.surface}",
+      "pair": "{color.semantic.text}",
+      "ratio": 13.3449,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.elevated}",
+      "pair": "{color.semantic.text}",
+      "ratio": 13.6739,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.text}",
+      "pair": "{color.semantic.canvas}",
+      "ratio": 12.457,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.muted}",
+      "pair": "{color.semantic.canvas}",
+      "ratio": 5.6304,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.tertiary}",
+      "pair": "{color.semantic.canvas}",
+      "ratio": 4.8408,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.border}",
+      "pair": "{color.semantic.canvas}",
+      "ratio": 4.7324,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.divider}",
+      "pair": "{color.semantic.text}",
+      "ratio": 9.608,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.brand}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 7.6217,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.brand_soft}",
+      "pair": "{color.semantic.brand_strong}",
+      "ratio": 7.769,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.brand_strong}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 10.2719,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.success}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 7.062,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.warning}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 7.1281,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.error}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 7.2114,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.info}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 7.0881,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.focus}",
+      "pair": "{color.semantic.on_brand}",
+      "ratio": 7.9585,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.disabled}",
+      "pair": "{color.semantic.disabled_bg}",
+      "ratio": 4.8502,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "token": "{color.semantic.selected}",
+      "pair": "{color.semantic.brand_strong}",
+      "ratio": 7.769,
+      "minimum": 4.5,
+      "pass": true
+    }
+  ]
+}

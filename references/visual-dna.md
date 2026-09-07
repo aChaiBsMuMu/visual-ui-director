@@ -1,6 +1,6 @@
 # Visual DNA
 
-Use after Gate A and before tokens. Visual DNA is the 5–8-rule identity layer used by design, implementation, and screenshot review.
+Use after [Design Strategy](phase-2/design-strategy.md) and before tokens. Strategy explains why; DNA describes stable behavior; the manual specifies implementation. Visual DNA is the 5–8-rule identity layer used by design, implementation, and screenshot review.
 
 ## Derivation
 

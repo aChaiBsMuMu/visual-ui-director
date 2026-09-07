@@ -1,5 +1,7 @@
 # Motion direction
 
+Phase 2 canonical workflow: [motion states](phase-2/motion-states.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Motion communicates state, causality, spatial relationship, hierarchy, and brand character. “Use subtle animation” is not a specification.
 
 Define purpose and personality, entry, exit, feedback, transition, loading, duration/easing families, interruption, reduced-motion equivalents, and prohibited motion.

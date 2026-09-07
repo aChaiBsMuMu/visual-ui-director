@@ -1,5 +1,7 @@
 # Typography character
 
+Phase 2 canonical workflow: [typography system](phase-2/typography-system.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Define how typography behaves, not only its sizes.
 
 For Heading, Body, Metric, Label, and any editorial or data-specialized role, specify:

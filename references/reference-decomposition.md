@@ -1,5 +1,7 @@
 # Reference decomposition
 
+Phase 2 canonical workflow: [deep reference analysis](phase-2/deep-reference-analysis.md). This compatibility reference retains foundational guidance; the Phase 2 manual and validation contract govern new work.
+
 Use after Gate A. The primary reference controls overall grammar; secondary references affect only their contracted traits.
 
 ## Reference types

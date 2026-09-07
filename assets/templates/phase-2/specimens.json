@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "draft",
+  "title": "{{PROJECT_NAME}}",
+  "languages": [],
+  "colors": [],
+  "typography": [],
+  "geometry": {
+    "spacing": [],
+    "radii": [],
+    "borders": [],
+    "surfaces": []
+  },
+  "patterns": [],
+  "components": [],
+  "icons": [],
+  "imagery": {
+    "mode": "none",
+    "reason": ""
+  },
+  "motion_cue": ""
+}
